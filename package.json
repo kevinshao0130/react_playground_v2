@@ -3,29 +3,58 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.11.65",
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@redux-devtools/extension": "3.2.3",
+    "@reduxjs/toolkit": "1.8.5",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "express": "4.18.1",
+    "moment": "2.29.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "8.0.4",
+    "react-router": "6.4.1",
+    "react-router-dom": "6.4.1",
+    "redux": "4.2.0",
+    "redux-actions": "2.6.5",
+    "redux-thunk": "2.4.1",
+    "web-vitals": "2.1.4"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.14",
+    "@types/jest": "27.5.2",
+    "@types/node": "18.8.4",
+    "@types/react": "18.0.21",
+    "@types/react-dom": "18.0.6",
+    "@types/redux-actions": "2.6.2",
+    "@typescript-eslint/eslint-plugin": "4.0.1",
+    "@typescript-eslint/parser": "4.0.1",
+    "nodemon": "2.0.20",
     "react-scripts": "5.0.1",
-    "typescript": "^4.8.4",
-    "web-vitals": "^2.1.4"
+    "standard": "12.0.1",
+    "ts-loader": "9.4.1",
+    "typescript": "4.8.4",
+    "webpack": "5.74.0",
+    "webpack-cli": "4.10.0",
+    "webpack-node-externals": "3.0.0"
+  },
+  "standard": {
+    "parser": "@typescript-eslint/parser"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3003 react-scripts start",
+    "clear": "rimraf ./build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:dev": "webpack --watch",
+    "start:dev": "nodemon build/server.js",
+    "build:ssr": "webpack",
+    "start:ssr": "node build/server.js"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
