@@ -8,7 +8,7 @@ var config = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: 'ts-loader',
         exclude: /node_modules/
       }
@@ -16,7 +16,7 @@ var config = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
-    modules: ['src', 'node_modules', 'server']
+    modules: ['src', 'node_modules']
   }
 }
 

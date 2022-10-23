@@ -1,34 +1,44 @@
 import express from 'express'
-import path from 'path'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom/server'
 import App from './App'
 
-const app = express()
-const port = 8000
+declare const module: any
 
-// app.use(express.static('public'))
-app.get('*', (req, res) => {
-  const content = renderToString(
-    <StaticRouter location={req.path}>
-      <App />
-    </StaticRouter>
-  )
-  const html = `
+function main () {
+  const app = express()
+  const port = 8000
+
+  app.use(express.static('build'))
+  app.get('/*', (req, res, next) => {
+    const content = renderToString(
+      <StaticRouter location={req.path}>
+        <App />
+      </StaticRouter>
+    )
+    const html = `
     <html>
       <head></head>
       <body>
         <div id="root">${content}</div>
-        <script src="./bundle.js"></script>
+        <script type="application/javascript" src="bundle.js"></script>
       </body>
     </html>
   `
 
-  res.send(html)
-})
+    res.send(html)
+    res.end()
+    next()
+  })
 
-app.use(express.static(path.resolve(__dirname, '..', 'build')))
+  const server = app.listen(port, () => {
+    console.log(`listening on port ${port}`)
+  })
 
-app.listen(port, () => {
-  console.log(`listening on port ${port}`)
-})
+  if (module.hot) {
+    module.hot.accept()
+    module.hot.dispose(() => server.close())
+  }
+}
+
+main()
