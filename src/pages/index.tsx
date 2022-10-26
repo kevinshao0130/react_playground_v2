@@ -1,9 +1,11 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { setRootData } from 'actions/root'
 
 export default function Index () {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [count, setCount] = useState(0)
+  const count = useSelector((state: any) => state.root.count)
 
   return (
     <div>
@@ -17,8 +19,8 @@ export default function Index () {
         to test
       </button>
       <p>{count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
+      <button onClick={() => dispatch(setRootData({ count: count + 1 }))}>Increment</button>
+      <button onClick={() => dispatch(setRootData({ count: count - 1 }))}>Decrement</button>
     </div>
   )
 }

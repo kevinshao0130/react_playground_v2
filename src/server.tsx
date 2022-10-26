@@ -1,22 +1,26 @@
-import express from 'express'
+import { Suspense } from 'react'
+import { Provider } from 'react-redux'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom/server'
+import express from 'express'
 import App from './App'
+import store from './store'
 
-declare const module: any
+const app = express()
+const port = 8000
 
-function main () {
-  const app = express()
-  const port = 8000
-
-  app.use(express.static('build'))
-  app.get('/*', (req, res, next) => {
-    const content = renderToString(
-      <StaticRouter location={req.path}>
-        <App />
-      </StaticRouter>
-    )
-    const html = `
+app.use(express.static('build'))
+app.get('/*', (req, res, next) => {
+  const content = renderToString(
+    <Suspense fallback={null}>
+      <Provider store={store}>
+        <StaticRouter location={req.path}>
+          <App />
+        </StaticRouter>
+      </Provider>
+    </Suspense>
+  )
+  const html = `
     <html>
       <head></head>
       <body>
@@ -26,19 +30,11 @@ function main () {
     </html>
   `
 
-    res.send(html)
-    res.end()
-    next()
-  })
+  res.send(html)
+  res.end()
+  next()
+})
 
-  const server = app.listen(port, () => {
-    console.log(`listening on port ${port}`)
-  })
-
-  if (module.hot) {
-    module.hot.accept()
-    module.hot.dispose(() => server.close())
-  }
-}
-
-main()
+app.listen(port, () => {
+  console.log(`listening on port ${port}`)
+})
