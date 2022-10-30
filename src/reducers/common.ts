@@ -1,17 +1,22 @@
 import { handleActions } from 'redux-actions'
 import { AnyAction } from 'redux'
+import { Prop } from 'type'
+
+export interface CommonReducerType extends Prop {
+  count?: number
+}
 
 const initState = () => ({
   count: 0
 })
 
 export default handleActions({
-  ROOT_INIT (state, action) {
+  COMMON_INIT (state, action) {
     return {
       ...initState()
     }
   },
-  ROOT_ACTION_TYPE (state, action: AnyAction) {
+  COMMON_SET_DATA (state, action: AnyAction) {
     return {
       ...state,
       ...action.data

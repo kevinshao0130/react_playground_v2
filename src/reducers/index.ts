@@ -1,13 +1,13 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import root from './root'
+import common, { CommonReducerType } from './common'
 
 const createRootReducer = combineReducers({
-  root
+  common
 })
 
 export interface ReducerType {
-  root: any
+  common: CommonReducerType
 }
 
 export default createRootReducer

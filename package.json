@@ -42,7 +42,7 @@
     "parser": "@typescript-eslint/parser"
   },
   "scripts": {
-    "start": "PORT=3003 react-scripts start",
+    "start": "PORT=8000 react-scripts start",
     "clear": "rimraf ./build",
     "build": "react-scripts build",
     "test": "react-scripts test",

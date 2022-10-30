@@ -1,26 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { setRootData } from 'actions/root'
+import { setCommonData } from 'actions/common'
+import { ReducerType } from 'reducers'
 
 export default function Index () {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const count = useSelector((state: any) => state.root.count)
+  const count = useSelector((state: ReducerType) => state.common.count)
 
   return (
     <div>
       <div>Index</div>
-      <button
-        onClick={() => {
-          console.log('to test')
-          navigate('test')
-        }}
-      >
-        to test
-      </button>
+      <br />
       <p>{count}</p>
-      <button onClick={() => dispatch(setRootData({ count: count + 1 }))}>Increment</button>
-      <button onClick={() => dispatch(setRootData({ count: count - 1 }))}>Decrement</button>
+      <button onClick={() => dispatch(setCommonData({ count: count + 1 }))}>Increment</button>
+      <button onClick={() => dispatch(setCommonData({ count: count - 1 }))}>Decrement</button>
     </div>
   )
 }
