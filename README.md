@@ -8,9 +8,11 @@
 * [Express](https://github.com/expressjs/express)
 * [JavaScript Standard Style](https://github.com/standard/standard)
 
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Quick start
+```
+npm run build:dev
+npm run start:dev
+```
 
 ## Available Scripts
 
