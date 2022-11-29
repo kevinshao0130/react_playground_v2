@@ -8,6 +8,17 @@
 * [Express](https://github.com/expressjs/express)
 * [JavaScript Standard Style](https://github.com/standard/standard)
 
+## Install package
+npm
+```
+npm install
+```
+
+yarn
+```
+yarn install
+```
+
 ## Quick start
 ```
 npm run build:dev
